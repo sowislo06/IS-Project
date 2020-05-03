@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+#Method 'index'
+def index(request):
+    return render(request, 'usermanagement/base.html')
