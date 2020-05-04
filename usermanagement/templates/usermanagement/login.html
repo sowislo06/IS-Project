@@ -1,0 +1,12 @@
+{% extends 'usermanagement/base.html' %}
+{% load bootstrap4 %}
+
+{% block title %} Usermanagement - Login {% endblock %}
+
+{% block authForm%}
+    <form method="post" action="">
+        {% csrf_token %}
+        {% bootstrap_form login_form %}
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+{% endblock %}

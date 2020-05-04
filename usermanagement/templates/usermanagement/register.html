@@ -1,0 +1,12 @@
+{% extends 'usermanagement/base.html' %}
+{% load bootstrap4 %}
+
+{% block title %} Usermanagement - Account anlegen {% endblock %}
+
+{% block authForm%}
+    <form method="post" action="">
+        {% csrf_token %}
+        {% bootstrap_form register_form %}
+        <button type="submit" class="btn btn-primary">Account anlegen</button>
+    </form>
+{% endblock %}
