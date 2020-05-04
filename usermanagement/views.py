@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 
 from .forms import RegisterForm, LoginForm
@@ -47,4 +47,8 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect(reverse('login:index'))
+    return redirect(reverse('usermanagement:index'))
+
+def delete_user_view(request):
+    request.user.delete()
+    return redirect(reverse('usermanagement:register'))

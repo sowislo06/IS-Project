@@ -14,7 +14,7 @@
         <a class="navbar-brand" href="#">IS-Project</a>
         <span class="navbar-text">
             {% if request.user.is_authenticated %}
-                <a class="navbar-text">Hallo {{request.user.username}}!</a>
+                <a href="{% url 'usermanagement:delete_user' %}" class="navbar-text">Hallo {{request.user.username}}!</a>
                 <a href="{% url 'usermanagement:logout' %}" class="btn btn-dark">Logout</a>
             {% else %}
                 <a href="{% url 'usermanagement:login' %}" class="btn btn-dark">Login</a>
