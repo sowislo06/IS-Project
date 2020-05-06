@@ -1,0 +1,50 @@
+{% extends 'asset/base.html' %}
+{% load bootstrap4 %}
+
+{% block title %} Category {% endblock %}
+
+{% block asset %}
+
+
+    <h2>List of all Categories</h2>
+    {% for category in categories %}
+        <ul>{{ category.name }}</ul>
+    {% endfor %}
+
+
+    <h2>Create new Category</h2>
+    {% if request.user.is_authenticated %}
+        <form class="form-inline" action="{% url 'asset:new_category' %}" method="post">
+            {% csrf_token %}
+            {% for field in category_form %}
+                {% bootstrap_field field %}
+            {% endfor %}
+            <button class="btn btn-primary" type="submit">Senden</button>
+        </form>
+    {% endif %}
+
+
+    <h2>Create new Station</h2>
+    {% if request.user.is_authenticated %}
+        <form class="form-inline" action="{% url 'asset:new_station' %}" method="post">
+            {% csrf_token %}
+            {% for field in station_form %}
+                {% bootstrap_field field %}
+            {% endfor %}
+            <button class="btn btn-primary" type="submit">Senden</button>
+        </form>
+    {% endif %}
+
+    <h2>Create new Asset</h2>
+    {% if request.user.is_authenticated %}
+        <form class="form-inline" action="{% url 'asset:new_asset' %}" method="post">
+            {% csrf_token %}
+            {% for field in asset_form %}
+                {% bootstrap_field field %}
+            {% endfor %}
+            <button class="btn btn-primary" type="submit">Senden</button>
+        </form>
+    {% endif %}
+{% endblock %}
+
+
