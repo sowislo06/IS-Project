@@ -10,7 +10,7 @@ class Station(models.Model):
         return self.name
 
 class Category(models.Model):
-    name = models.CharField(max_length=250)
+    name = models.CharField(max_length=249)
 
     def __str__(self):
         return self.name
