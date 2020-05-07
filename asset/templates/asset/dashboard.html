@@ -24,6 +24,11 @@
     {% endif %}
 
 
+    <h2>List of all Stations</h2>
+    {% for station in stations %}
+        <ul>{{ station.name }}</ul>
+    {% endfor %}
+
     <h2>Create new Station</h2>
     {% if request.user.is_authenticated %}
         <form class="form-inline" action="{% url 'asset:new_station' %}" method="post">
@@ -34,6 +39,17 @@
             <button class="btn btn-primary" type="submit">Senden</button>
         </form>
     {% endif %}
+
+
+    <h2>List of all Assets</h2>
+    {% for asset in assets %}
+        <ul>
+            <li>{{ asset.name }}</li>
+            <li>{{ asset.category.name }}</li>
+            <li>{{ asset.station.name }}</li>
+        </ul>
+
+    {% endfor %}
 
     <h2>Create new Asset</h2>
     {% if request.user.is_authenticated %}

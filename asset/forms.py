@@ -19,4 +19,6 @@ class AssetForm(forms.ModelForm):
 
     class Meta:
         model = Asset
-        fields = ['name']
+        fields = ['name', 'category', 'station']
+
+
