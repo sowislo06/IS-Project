@@ -1,3 +1,4 @@
+{% load bootstrap4 %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +28,29 @@
         <div class="row">
             <div class="col-12 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
                 {% block authForm%}
+
+                    <h2>Create new Activity</h2>
+                    {% if request.user.is_authenticated %}
+                        <form class="form-inline" action="{% url 'logistics:new_activity' %}" method="post">
+                            {% csrf_token %}
+                            {% for field in activity_form %}
+                                {% bootstrap_field field %}
+                            {% endfor %}
+                            <button class="btn btn-primary" type="submit">Senden</button>
+                        </form>
+                    {% endif %}
+
+                    <h2>List of all Stations</h2>
+                    {% for activity in activities %}
+                        <ul>
+                            <li>Start: {{ activity.startDate }}</li>
+                            <li>Ende: {{ activity.endDate }}</li>
+                            <li>Quelle: {{ activity.fromStation }}</li>
+                            <li>Ziel: {{ activity.toStation }}</li>
+                            <li>Asset: {{ activity.asset }}</li>
+                        </ul>
+                    {% endfor %}
+
                 {% endblock %}
             </div>
         </div>
