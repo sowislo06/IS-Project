@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'usermanagement',
     'bootstrap4',
     'asset',
+    'logistics',
 ]
 
 MIDDLEWARE = [
