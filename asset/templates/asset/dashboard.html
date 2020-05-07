@@ -27,6 +27,7 @@
     <h2>List of all Stations</h2>
     {% for station in stations %}
         <ul>{{ station.name }}</ul>
+        <a href="{% url 'asset:select_station' station.id %}">#{{ station.id }}</a>
     {% endfor %}
 
     <h2>Create new Station</h2>
@@ -61,6 +62,7 @@
             <button class="btn btn-primary" type="submit">Senden</button>
         </form>
     {% endif %}
+
 {% endblock %}
 
 

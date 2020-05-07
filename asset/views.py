@@ -12,8 +12,9 @@ def index(request):
     categories = Category.objects.order_by('name')
     stations = Station.objects.order_by('name')
     assets = Asset.objects.order_by('name')
+
     return render(request, 'asset/dashboard.html', {'category_form': category_form, 'categories': categories, 'station_form': station_form,
-                                                    'asset_form': asset_form, 'stations': stations, 'assets': assets})
+                                                    'asset_form': asset_form, 'stations': stations, 'assets': assets })
 
 
 @login_required
@@ -39,3 +40,10 @@ def create_asset_view(request):
     if asset_form.is_valid():
         asset_form.save()
     return HttpResponseRedirect(reverse('asset:index'))
+
+
+@login_required
+def select_station_view(request, station_id):
+    asset = Asset.objects.filter(station_id=station_id)
+    station = Station.objects.get(pk=station_id)
+    return render(request, 'asset/station.html', {'asset': asset, 'station': station})
