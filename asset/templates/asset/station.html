@@ -1,0 +1,18 @@
+{% extends 'asset/base.html' %}
+{% load bootstrap4 %}
+
+{% block title %} Category {% endblock %}
+
+{% block asset %}
+
+
+    <h1>List all Assets from {{ station.name }}</h1>
+    {% if request.user.is_authenticated %}
+        {% for asset in asset %}
+            <ul>{{ asset.name }}</ul>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}
+
+
