@@ -8,8 +8,7 @@ class Activity(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     startDate = models.DateTimeField(default=timezone.now)
     endDate = models.DateTimeField(default=None, blank=True, null=True)
-    fromStation = models.ForeignKey(Station, on_delete=models.CASCADE, related_name='from_station')
-    toStation = models.ForeignKey(Station, on_delete=models.CASCADE, related_name='to_station')
-    asset = models.ForeignKey(Asset, on_delete=models.CASCADE, default='')
+    station = models.ForeignKey(Station, on_delete=models.CASCADE, default='')
+    asset = models.ForeignKey(Asset, on_delete=models.CASCADE)
 
 

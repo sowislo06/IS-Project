@@ -19,9 +19,11 @@ def create_activity_view(request):
 
 
         #In dem Fall, wenn eine Activity angelegt wird und dem Asset bereits eine Acitivity zugeordnet ist, wird das Enddatum automtisch gesetzt
-        if Activity.objects.filter(asset=activity_form.cleaned_data['asset']).count() <= 1:
+        if Activity.objects.filter(asset=activity_form.cleaned_data['asset']).exists():
             if Activity.objects.filter(asset=activity_form.cleaned_data['asset']).get(endDate = None):
-                Activity.objects.filter(asset=activity_form.cleaned_data['asset']).update(endDate=timezone.now())
+                p = Activity.objects.filter(asset=activity_form.cleaned_data['asset']).get(endDate = None)
+                p.endDate=timezone.now()
+                p.save()
 
         activity = activity_form.save(commit=False)
         activity.user = request.user

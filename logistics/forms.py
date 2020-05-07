@@ -5,4 +5,4 @@ class ActivityForm(forms.ModelForm):
 
     class Meta:
         model = Activity
-        fields = ['asset', 'fromStation', 'toStation']
+        fields = ['asset', 'station']
