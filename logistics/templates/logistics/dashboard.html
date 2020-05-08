@@ -1,0 +1,27 @@
+{% extends 'asset/base.html' %}
+{% load bootstrap4 %}
+
+{% block title %} Category {% endblock %}
+
+{% block asset %}
+
+
+
+    <div class="container">
+         <div class="row">
+            {% for station in sumStations %}
+                 <div class="col">
+                     <h1>{{station.name}}</h1>
+                     <ul>
+                         {% for asset in assets %}
+                            {% if asset.station == station %}
+                                 <li>{{ asset.name }}</li>
+                            {% endif %}
+                         {% endfor %}
+                     </ul>
+                 </div>
+            {% endfor %}
+         </div>
+    </div>
+
+{% endblock %}

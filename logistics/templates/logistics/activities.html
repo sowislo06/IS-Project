@@ -18,6 +18,8 @@
     {% if request.user.is_authenticated %}
         {% for activity in activities %}
             <ul>{{ activity.station }}</ul>
+            <ul>{{ activity.user }}</ul>
+            <ul>{{ activity.startDate }}</ul>
         {% endfor %}
     {% endif %}
 

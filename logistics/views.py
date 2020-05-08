@@ -5,7 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from .models import Activity
 from django.utils import timezone
-from asset.models import Station
+from asset.models import Station, Asset
+from django.template.defaulttags import register
 
 def index(request):
     activity_form = ActivityForm()
@@ -26,7 +27,8 @@ def create_activity_view(request):
         activity = activity_form.save(commit=False)
         activity.user = request.user
         activity_form.save()
-
+        #Station in der Tabelle "Asset" ändern
+        Asset.objects.filter(pk=activity_form.cleaned_data['asset'].id).update(station=activity_form.cleaned_data['station'])
     return HttpResponseRedirect(reverse('logistics:index'))
 
 def select_activity_view(request):
@@ -38,4 +40,12 @@ def select_activity_view(request):
             activities = Activity.objects.filter(asset=asset_form.cleaned_data['asset']).all()
 
     return render(request, 'logistics/activities.html', {'asset_form': asset_form, 'activities': activities})
+
+def overview_view(request):
+    activities = Activity.objects.all()
+    sumStations = Station.objects.all()
+    assets = Asset.objects.all()
+
+
+    return render(request, 'logistics/dashboard.html', {'activities': activities, 'sumStations': sumStations, 'assets': assets})
 
