@@ -1,0 +1,26 @@
+{% extends 'asset/base.html' %}
+{% load bootstrap4 %}
+
+{% block title %} Category {% endblock %}
+
+{% block asset %}
+
+    {% if request.user.is_authenticated %}
+        <form class="form-inline" action="{% url 'logistics:select_activity' %}" method="post">
+            {% csrf_token %}
+            {% for field in asset_form %}
+                {% bootstrap_field field %}
+            {% endfor %}
+            <button class="btn btn-primary" type="submit">Senden</button>
+        </form>
+    {% endif %}
+
+    {% if request.user.is_authenticated %}
+        {% for activity in activities %}
+            <ul>{{ activity.station }}</ul>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}
+
+
